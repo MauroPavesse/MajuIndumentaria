@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Articulos</title>
+</head>
+<body>
+    <h1>Articulos</h1>
+    <ul id="lista-articulos"></ul>
+
+    <script>
+        fetch('http://localhost:8080/api/product/all)
+            .then(response => response.json())
+            .then(data => {
+                const listaArticulos = document.getElementById('lista-articulos');
+                data.forEach(articulo => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = articulo.nombre; // Ajusta según la estructura de tus datos
+                    listaArticulos.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error al obtener la lista de artículos:', error));
+    </script>
+</body>
+</html>
